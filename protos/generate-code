@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# svc-a code gen
+protoc -I $(pwd) svc-a.proto --go_out=plugins=grpc:$(pwd)/../svc-a/internal
+
+# # svc-b code gen
+protoc -I $(pwd) svc-b.proto --go_out=plugins=grpc:$(pwd)/../svc-b/internal
+
+# # svc-c code gen
+protoc -I $(pwd) svc-c.proto --go_out=plugins=grpc:$(pwd)/../svc-c/internal
+
+
+# generate client code
+protoc -I $(pwd) svc-a.proto --go_out=plugins=grpc:$(pwd)/../client/internal/svca
+
+protoc -I $(pwd) svc-b.proto --go_out=plugins=grpc:$(pwd)/../client/internal/svcb
+
+protoc -I $(pwd) svc-c.proto --go_out=plugins=grpc:$(pwd)/../client/internal/svcc
+
+
+# Curl for retrieving consul svc
+# curl \
+#     http://127.0.0.1:8500/v1/catalog/service/svc-a 

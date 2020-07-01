@@ -1,0 +1,9 @@
+{
+    "service": {
+      "name": "svc-c",
+      "tags": [
+        "grpc"
+      ],
+      "port": 5002
+    }
+  }
